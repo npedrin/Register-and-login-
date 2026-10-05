@@ -21,16 +21,15 @@ def registrar_logar():
 def login(): 
     '''Ver por que essa porra esta repetindo mesmo depois de logar certo'''
     tentativas=0
-    while tentativas<=3:
+    while tentativas<3:
         username=input('Usuário: ')
         password=input('Senha: ')
-        for chave, valor in contas.items():
-            if username==chave and password==valor:
-                print('Logado!')
-                input('Pressione qualquer tecla para prosseguir.')
-                return
+        if contas.get(username)==password:
+            print('Logado!')
+            input('Pressione qualquer tecla para prosseguir.')
+            return
 
-                #os.system('cls')
+            #os.system('cls')
         print('''Usuário ou senha invalidos.
 Tente novamente!''')
     

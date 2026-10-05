@@ -19,7 +19,7 @@ def registrar_logar():
         login()
         
 def login(): 
-    '''Ver por que essa porra esta repetindo mesmo depois de logar certo'''
+    '''Ver por que essa porra esta repetindo mesmo depois de logar'''
     tentativas=0
     while tentativas<3:
         username=input('Usuário: ')

@@ -3,6 +3,15 @@ contas={
     "sophialinda": "sophia2010*"
 }
 
+def limpar_tela():
+    '''Função para limpar a tela independente do sistema operacional'''
+    sistema=os.name
+    if sistema =="nt":
+        os.system("cls")
+    else:
+        os.system("clear")
+
+
 def registrar_logar():
     '''Input para decidir se vai registrar ou logar. '''
     opcao=int(input("""Deseja registrar ou logar:
@@ -10,11 +19,11 @@ def registrar_logar():
 (2: Login)
 """))
     if opcao==1:
-        os.system('cls')
+        limpar_tela()
         print('Registrar')
         criar_conta()
     elif opcao==2:
-        os.system('cls')
+        limpar_tela()
         print('Login')
         login()
         
@@ -29,11 +38,10 @@ def login():
             input('Pressione qualquer tecla para prosseguir.')
             return
 
-            #os.system('cls')
         print('''Usuário ou senha invalidos.
 Tente novamente!''')
     
-    os.system('cls')
+    limpar_tela()
     print('Você excedeu o limite de tentativas. ')
 
 def criar_conta():
@@ -46,7 +54,7 @@ def criar_conta():
         password=input('Informe a sua senha: ')
         c_password=input('Confirmar senha: ')
         if c_password == password: 
-            os.system('cls')
+            limpar_tela()
             print('Conta criada com sucesso!')
             contas[user]=password
             input('Pressione qualquer tecla para continuar.')
@@ -65,7 +73,6 @@ Senha: {valor}''')
 
 def main():
     registrar_logar()
-    mostrar_contas()
 
 if __name__ == "__main__":
     main()

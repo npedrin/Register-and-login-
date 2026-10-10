@@ -28,14 +28,14 @@ def registrar_logar():
         login()
         
 def login(): 
-    '''Ver por que essa porra esta repetindo mesmo depois de logar'''
+    '''Sistema de login onde verifica se usuario ou senha estao corretos e pode prosseguir'''
     tentativas=0
     while tentativas<3:
         username=input('Usuário: ')
         password=input('Senha: ')
         if contas.get(username)==password:
             print('Logado!')
-            input('Pressione qualquer tecla para prosseguir.')
+            enter()
             return
 
         print('''Usuário ou senha invalidos.
@@ -45,12 +45,15 @@ Tente novamente!''')
     print('Você excedeu o limite de tentativas. ')
 
 def criar_conta():
-    '''Sistema de criar conta com usuário, senha e confirmar senha.
-    Se chegar ate 3 tentativas e o usuário não colocar o c_password igual
-    a senha, sistema para e nao efetua o registrar.'''
-    contador_s=1
-    user=input('Informe o seu nome de usuário: ')
-    while contador_s<=3:
+    '''Sistema de criar conta com usuário, senha e confirmar senha.'''
+    while True:
+        user=input('Informe o seu nome de usuário: ')
+        if user in contas.keys():
+            print("""Esse usuário ja existe!
+Tente outro nome de usuário!""")
+            enter()
+            limpar_tela()
+            return criar_conta()
         password=input('Informe a sua senha: ')
         c_password=input('Confirmar senha: ')
         if c_password == password: 
@@ -59,7 +62,7 @@ def criar_conta():
             contas[user]=password
             input('Pressione qualquer tecla para continuar.')
             main()
-            break
+            return
         elif c_password!=password:
             print('A senha deve ser igual. ')
             contador_s+=1
@@ -70,6 +73,8 @@ def mostrar_contas():
         print(f'''Username: {chave} 
 Senha: {valor}''')
    
+def enter():
+    input('Pressione qualquer tecla para prosseguir.')
 
 def main():
     registrar_logar()
